@@ -64,6 +64,19 @@ export default function Progress() {
     0,
   );
 
+  // Count distinct completed alphabet lessons only.
+  const alphabetLessonIds = new Set(
+    lessons
+      .filter((lesson) => /^letter-[a-z]$/.test(lesson.id))
+      .map((lesson) => lesson.id),
+  );
+
+  const completedAlphabetLetters = new Set(
+    rows
+      .filter((row) => alphabetLessonIds.has(row.lesson_id))
+      .map((row) => row.lesson_id),
+  ).size;
+
   const achievements: Achievement[] = [
     {
       id: "first",
@@ -134,6 +147,37 @@ export default function Progress() {
         sw: "Jibu maswali yote kwa usahihi",
       },
       unlocked: rows.some((row) => row.total > 0 && row.score === row.total),
+    },
+
+    {
+      id: "letter-explorer",
+      emoji: "🔤",
+      title: { en: "Letter Explorer", sw: "Mvumbuzi wa Herufi" },
+      description: {
+        en: "Complete 5 different alphabet lessons",
+        sw: "Kamilisha masomo 5 tofauti ya herufi",
+      },
+      unlocked: completedAlphabetLetters >= 5,
+    },
+    {
+      id: "alphabet-builder",
+      emoji: "📖",
+      title: { en: "Alphabet Builder", sw: "Mjenzi wa Alfabeti" },
+      description: {
+        en: "Complete 10 different alphabet lessons",
+        sw: "Kamilisha masomo 10 tofauti ya herufi",
+      },
+      unlocked: completedAlphabetLetters >= 10,
+    },
+    {
+      id: "alphabet-superstar",
+      emoji: "🏆",
+      title: { en: "Alphabet Superstar", sw: "Bingwa wa Alfabeti" },
+      description: {
+        en: "Complete all 26 alphabet lessons",
+        sw: "Kamilisha masomo yote 26 ya alfabeti",
+      },
+      unlocked: completedAlphabetLetters >= 26,
     },
   ];
 
