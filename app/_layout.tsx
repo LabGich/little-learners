@@ -1,5 +1,28 @@
+
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
+
 export default function RootLayout() {
-  return <><StatusBar style="dark"/><Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: '#FFF9EF' } }}><Stack.Screen name="(tabs)"/><Stack.Screen name="lesson/[id]" options={{ presentation: 'card' }}/><Stack.Screen name="subject/[id]" options={{ presentation: 'card' }}/></Stack></>;
+  return (
+    <>
+      <StatusBar style="dark" />
+      <Stack
+        screenOptions={{
+          headerShown: false,
+          contentStyle: { backgroundColor: '#FFF9EF' },
+        }}
+      >
+        <Stack.Screen name="index" />
+        <Stack.Screen name="(tabs)" />
+        <Stack.Screen
+          name="lesson/[id]"
+          options={{ presentation: 'card' }}
+        />
+        <Stack.Screen
+          name="subject/[id]"
+          options={{ presentation: 'card' }}
+        />
+      </Stack>
+    </>
+  );
 }

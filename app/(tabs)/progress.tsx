@@ -179,6 +179,57 @@ export default function Progress() {
       },
       unlocked: completedAlphabetLetters >= 26,
     },
+
+    {
+      id: "counting-to-30",
+      emoji: "🔢",
+      title: { en: "Counting Star", sw: "Nyota ya Kuhesabu" },
+      description: {
+        en: "Complete Counting to 30",
+        sw: "Kamilisha somo la Kuhesabu hadi 30",
+      },
+      unlocked: rows.some((row) => row.lesson_id === "count-to-30"),
+    },
+    {
+      id: "counting-to-50",
+      emoji: "🧮",
+      title: { en: "Number Explorer", sw: "Mvumbuzi wa Namba" },
+      description: {
+        en: "Complete Counting to 50",
+        sw: "Kamilisha somo la Kuhesabu hadi 50",
+      },
+      unlocked: rows.some((row) => row.lesson_id === "count-to-50"),
+    },
+    {
+      id: "counting-to-100",
+      emoji: "💯",
+      title: { en: "Century Champion", sw: "Bingwa wa Mia" },
+      description: {
+        en: "Complete Counting to 100",
+        sw: "Kamilisha somo la Kuhesabu hadi 100",
+      },
+      unlocked: rows.some((row) => row.lesson_id === "count-to-100"),
+    },
+    {
+      id: "addition-master",
+      emoji: "➕",
+      title: { en: "Addition Master", sw: "Bingwa wa Kujumlisha" },
+      description: {
+        en: "Complete Adding Small Numbers",
+        sw: "Kamilisha somo la Kujumlisha Namba Ndogo",
+      },
+      unlocked: rows.some((row) => row.lesson_id === "add-small"),
+    },
+    {
+      id: "subtraction-master",
+      emoji: "➖",
+      title: { en: "Subtraction Master", sw: "Bingwa wa Kutoa" },
+      description: {
+        en: "Complete Taking Away Small Numbers",
+        sw: "Kamilisha somo la Kutoa Namba Ndogo",
+      },
+      unlocked: rows.some((row) => row.lesson_id === "subtraction"),
+    },
   ];
 
   const unlockedCount = achievements.filter((item) => item.unlocked).length;
