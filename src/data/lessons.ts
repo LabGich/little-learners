@@ -98,6 +98,118 @@ export const subjects = [
   },
 ] as const;
 
+
+type AlphabetEntry = {
+  letter: string;
+  word: string;
+  emoji: string;
+  distractors: {
+    label: string;
+    emoji: string;
+  }[];
+  otherLetters: [string, string];
+};
+
+const alphabetEntries: AlphabetEntry[] = [
+  { letter: 'C', word: 'Cat', emoji: '🐱', distractors: [{ label: 'Ball', emoji: '⚽' }, { label: 'Sun', emoji: '☀️' }], otherLetters: ['B', 'D'] },
+  { letter: 'D', word: 'Dog', emoji: '🐶', distractors: [{ label: 'Fish', emoji: '🐟' }, { label: 'Mango', emoji: '🥭' }], otherLetters: ['C', 'E'] },
+  { letter: 'E', word: 'Egg', emoji: '🥚', distractors: [{ label: 'Cat', emoji: '🐱' }, { label: 'Lion', emoji: '🦁' }], otherLetters: ['D', 'F'] },
+  { letter: 'F', word: 'Fish', emoji: '🐟', distractors: [{ label: 'Dog', emoji: '🐶' }, { label: 'Sun', emoji: '☀️' }], otherLetters: ['E', 'G'] },
+  { letter: 'G', word: 'Goat', emoji: '🐐', distractors: [{ label: 'Apple', emoji: '🍎' }, { label: 'Pen', emoji: '🖊️' }], otherLetters: ['F', 'H'] },
+  { letter: 'H', word: 'Hat', emoji: '🎩', distractors: [{ label: 'Ball', emoji: '⚽' }, { label: 'Cat', emoji: '🐱' }], otherLetters: ['G', 'I'] },
+  { letter: 'I', word: 'Ice cream', emoji: '🍦', distractors: [{ label: 'Apple', emoji: '🍎' }, { label: 'Dog', emoji: '🐶' }], otherLetters: ['H', 'J'] },
+  { letter: 'J', word: 'Jug', emoji: '🏺', distractors: [{ label: 'Cat', emoji: '🐱' }, { label: 'Sun', emoji: '☀️' }], otherLetters: ['I', 'K'] },
+  { letter: 'K', word: 'Kite', emoji: '🪁', distractors: [{ label: 'Ball', emoji: '⚽' }, { label: 'Fish', emoji: '🐟' }], otherLetters: ['J', 'L'] },
+  { letter: 'L', word: 'Lion', emoji: '🦁', distractors: [{ label: 'Dog', emoji: '🐶' }, { label: 'Goat', emoji: '🐐' }], otherLetters: ['K', 'M'] },
+  { letter: 'M', word: 'Mango', emoji: '🥭', distractors: [{ label: 'Apple', emoji: '🍎' }, { label: 'Ball', emoji: '⚽' }], otherLetters: ['L', 'N'] },
+  { letter: 'N', word: 'Nest', emoji: '🪺', distractors: [{ label: 'Cat', emoji: '🐱' }, { label: 'Dog', emoji: '🐶' }], otherLetters: ['M', 'O'] },
+  { letter: 'O', word: 'Orange', emoji: '🍊', distractors: [{ label: 'Apple', emoji: '🍎' }, { label: 'Egg', emoji: '🥚' }], otherLetters: ['N', 'P'] },
+  { letter: 'P', word: 'Pen', emoji: '🖊️', distractors: [{ label: 'Cat', emoji: '🐱' }, { label: 'Sun', emoji: '☀️' }], otherLetters: ['O', 'Q'] },
+  { letter: 'Q', word: 'Queen', emoji: '👑', distractors: [{ label: 'Cat', emoji: '🐱' }, { label: 'Dog', emoji: '🐶' }], otherLetters: ['P', 'R'] },
+  { letter: 'R', word: 'Rabbit', emoji: '🐰', distractors: [{ label: 'Ball', emoji: '⚽' }, { label: 'Fish', emoji: '🐟' }], otherLetters: ['Q', 'S'] },
+  { letter: 'S', word: 'Sun', emoji: '☀️', distractors: [{ label: 'Cat', emoji: '🐱' }, { label: 'Dog', emoji: '🐶' }], otherLetters: ['R', 'T'] },
+  { letter: 'T', word: 'Tree', emoji: '🌳', distractors: [{ label: 'Ball', emoji: '⚽' }, { label: 'Mango', emoji: '🥭' }], otherLetters: ['S', 'U'] },
+  { letter: 'U', word: 'Umbrella', emoji: '☂️', distractors: [{ label: 'Apple', emoji: '🍎' }, { label: 'Orange', emoji: '🍊' }], otherLetters: ['T', 'V'] },
+  { letter: 'V', word: 'Van', emoji: '🚐', distractors: [{ label: 'Dog', emoji: '🐶' }, { label: 'Fish', emoji: '🐟' }], otherLetters: ['U', 'W'] },
+  { letter: 'W', word: 'Water', emoji: '💧', distractors: [{ label: 'Cat', emoji: '🐱' }, { label: 'Ball', emoji: '⚽' }], otherLetters: ['V', 'X'] },
+  { letter: 'X', word: 'Xylophone', emoji: '🎼', distractors: [{ label: 'Apple', emoji: '🍎' }, { label: 'Sun', emoji: '☀️' }], otherLetters: ['W', 'Y'] },
+  { letter: 'Y', word: 'Yo-yo', emoji: '🪀', distractors: [{ label: 'Ball', emoji: '⚽' }, { label: 'Cat', emoji: '🐱' }], otherLetters: ['X', 'Z'] },
+  { letter: 'Z', word: 'Zebra', emoji: '🦓', distractors: [{ label: 'Dog', emoji: '🐶' }, { label: 'Fish', emoji: '🐟' }], otherLetters: ['X', 'Y'] },
+];
+
+const alphabetLessons: Lesson[] = alphabetEntries.map((entry) => {
+  const letter = entry.letter;
+  const lower = letter.toLowerCase();
+  const letterPair = `${letter} ${lower}`;
+
+  const pictureOptions = [
+    { label: entry.word, emoji: entry.emoji },
+    ...entry.distractors,
+  ];
+
+  return {
+    id: `letter-${lower}`,
+    subject: 'reading',
+    age: [6, 7],
+    title: {
+      en: `Meet the letter ${letter}`,
+      sw: `Kutana na herufi ${letter}`,
+    },
+    description: {
+      en: `Recognise ${letter} and learn a word beginning with it`,
+      sw: `Tambua ${letter} na ujifunze neno linaloanza nayo`,
+    },
+    emoji: entry.emoji,
+    colour: '#FFE7A8',
+    intro: {
+      en: `This is the letter ${letter}. Its uppercase form is ${letter} and its lowercase form is ${lower}. ${entry.word} begins with ${letter}. Say the letter, then the word: ${letter}, ${entry.word}!`,
+      sw: `Hii ni herufi ${letter}. Herufi kubwa ni ${letter} na herufi ndogo ni ${lower}. Neno la Kiingereza ${entry.word} linaanza na herufi ${letter}.`,
+    },
+    questions: {
+      en: [
+        {
+          type: 'picture',
+          prompt: `Which picture begins with the letter ${letter}?`,
+          options: [],
+          pictureOptions,
+          answer: entry.word,
+          hint: `${entry.word} begins with ${letter}.`,
+        },
+        {
+          prompt: `Which pair shows uppercase and lowercase ${letter}?`,
+          options: [
+            letterPair,
+            `${entry.otherLetters[0]} ${entry.otherLetters[0].toLowerCase()}`,
+            `${entry.otherLetters[1]} ${entry.otherLetters[1].toLowerCase()}`,
+          ],
+          answer: letterPair,
+          hint: `${letter} is uppercase. ${lower} is lowercase.`,
+        },
+      ],
+      sw: [
+        {
+          type: 'picture',
+          prompt: `Ni picha gani inayoanza na herufi ${letter}?`,
+          options: [],
+          pictureOptions,
+          answer: entry.word,
+          hint: `Neno la Kiingereza ${entry.word} linaanza na herufi ${letter}.`,
+        },
+        {
+          prompt: `Ni jozi gani inayoonyesha herufi kubwa na ndogo ${letter}?`,
+          options: [
+            letterPair,
+            `${entry.otherLetters[0]} ${entry.otherLetters[0].toLowerCase()}`,
+            `${entry.otherLetters[1]} ${entry.otherLetters[1].toLowerCase()}`,
+          ],
+          answer: letterPair,
+          hint: `${letter} ni herufi kubwa. ${lower} ni herufi ndogo.`,
+        },
+      ],
+    },
+  };
+});
+
 export const lessons: Lesson[] = [
   {
     id: "letter-a",
@@ -1053,4 +1165,5 @@ export const lessons: Lesson[] = [
       ],
     },
   },
+  ...alphabetLessons,
 ];
