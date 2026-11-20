@@ -1,4 +1,3 @@
-
 {
   "name": "little-learners",
   "version": "1.0.0",
@@ -24,6 +23,7 @@
     "expo-linking": "~58.0.17",
     "expo-router": "*",
     "expo-speech": "*",
+    "expo-splash-screen": "~58.0.14",
     "expo-sqlite": "*",
     "expo-status-bar": "*",
     "react": "19.3.0",

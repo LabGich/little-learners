@@ -6,9 +6,43 @@
     "version": "1.0.0",
     "orientation": "default",
     "userInterfaceStyle": "light",
-    "plugins": ["expo-router", "expo-sqlite"],
-    "experiments": { "typedRoutes": true },
-    "ios": { "supportsTablet": true, "bundleIdentifier": "com.example.littlelearners" },
-    "android": { "package": "com.example.littlelearners", "adaptiveIcon": { "backgroundColor": "#FFF4D8" } }
+    "icon": "./assets/icon.png",
+    "plugins": [
+      "expo-router",
+      "expo-sqlite",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash.png",
+          "imageWidth": 300,
+          "resizeMode": "contain",
+          "backgroundColor": "#FFF4D8"
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.labgich.littlelearners"
+    },
+    "android": {
+      "package": "com.labgich.littlelearners",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon.png",
+        "backgroundColor": "#FFF4D8"
+      }
+    },
+    "extra": {
+      "router": {
+        "asyncRoutes": {
+          "web": true
+        }
+      },
+      "eas": {
+        "projectId": "7e3a560c-69d8-4867-9ef6-1bee68093b48"
+      }
+    }
   }
 }
