@@ -1,0 +1,183 @@
+
+import { StyleSheet } from 'react-native';
+
+export const homeStyles = StyleSheet.create({
+  content: {
+    padding: 16,
+    paddingBottom: 28,
+    gap: 18,
+  },
+  hero: {
+    backgroundColor: '#E8F2FF',
+    borderRadius: 28,
+    padding: 20,
+    gap: 9,
+    overflow: 'hidden',
+  },
+  heroTop: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  brand: {
+    color: '#5269D9',
+    fontSize: 14,
+    fontWeight: '900',
+    letterSpacing: 0.5,
+  },
+  tagline: {
+    color: '#8290AC',
+    fontSize: 9,
+    fontWeight: '800',
+    letterSpacing: 1.5,
+    marginTop: 3,
+  },
+  mascot: {
+    width: 55,
+    height: 55,
+    borderRadius: 20,
+    backgroundColor: '#FFFFFF',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  greeting: {
+    color: '#24314B',
+    fontSize: 27,
+    fontWeight: '900',
+    marginTop: 8,
+  },
+  greetingStar: {
+    fontSize: 25,
+    position: 'absolute',
+    right: 24,
+    top: 91,
+  },
+  subtitle: {
+    color: '#586B89',
+    fontSize: 14,
+    marginBottom: 5,
+  },
+  statsRow: {
+    flexDirection: 'row',
+    gap: 12,
+    marginTop: 7,
+  },
+  statCard: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 19,
+    padding: 13,
+    flex: 1,
+    minHeight: 105,
+    justifyContent: 'center',
+    shadowColor: '#7B91B8',
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.08,
+    shadowRadius: 6,
+    elevation: 2,
+  },
+  statIcon: {
+    marginBottom: 3,
+  },
+  statNumber: {
+    color: '#24314B',
+    fontSize: 23,
+    fontWeight: '900',
+  },
+  statLabel: {
+    color: '#8490A5',
+    fontSize: 12,
+    marginTop: 2,
+  },
+  sectionHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  sectionEmoji: {
+    fontSize: 23,
+  },
+  subjectGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 12,
+  },
+  subjectCard: {
+    borderRadius: 22,
+    padding: 15,
+    width: '48%',
+    flexGrow: 1,
+    minWidth: 140,
+    minHeight: 130,
+    justifyContent: 'center',
+    gap: 6,
+    shadowColor: '#536078',
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.07,
+    shadowRadius: 5,
+    elevation: 2,
+  },
+  pressed: {
+    opacity: 0.82,
+    transform: [{ scale: 0.97 }],
+  },
+  subjectIcon: {
+    marginBottom: 2,
+  },
+  subjectTitle: {
+    color: '#28344D',
+    fontWeight: '900',
+    fontSize: 15,
+  },
+  subjectSubtitle: {
+    color: '#667187',
+    fontSize: 12,
+    lineHeight: 17,
+  },
+  subjectArrow: {
+    position: 'absolute',
+    right: 13,
+    bottom: 9,
+  },
+  tipCard: {
+    backgroundColor: '#FFF0D8',
+    borderRadius: 21,
+    padding: 16,
+    gap: 7,
+    borderWidth: 1,
+    borderColor: '#F4E4C9',
+  },
+  tipIcon: {
+    marginBottom: 1,
+  },
+  tipText: {
+    color: '#34405A',
+    fontSize: 14,
+    fontWeight: '800',
+    lineHeight: 21,
+  },
+  offlineCard: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+    backgroundColor: '#F0F7EF',
+  },
+  offlineIcon: {
+    width: 45,
+    height: 45,
+    borderRadius: 15,
+    backgroundColor: '#FFFFFF',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  offlineTitle: {
+    color: '#344B3C',
+    fontWeight: '900',
+    fontSize: 14,
+  },
+  footer: {
+    color: '#9299A8',
+    fontSize: 11,
+    textAlign: 'center',
+    marginTop: 2,
+  },
+});
