@@ -98,7 +98,6 @@ export const subjects = [
   },
 ] as const;
 
-
 type AlphabetEntry = {
   letter: string;
   word: string;
@@ -111,30 +110,246 @@ type AlphabetEntry = {
 };
 
 const alphabetEntries: AlphabetEntry[] = [
-  { letter: 'C', word: 'Cat', emoji: '🐱', distractors: [{ label: 'Ball', emoji: '⚽' }, { label: 'Sun', emoji: '☀️' }], otherLetters: ['B', 'D'] },
-  { letter: 'D', word: 'Dog', emoji: '🐶', distractors: [{ label: 'Fish', emoji: '🐟' }, { label: 'Mango', emoji: '🥭' }], otherLetters: ['C', 'E'] },
-  { letter: 'E', word: 'Egg', emoji: '🥚', distractors: [{ label: 'Cat', emoji: '🐱' }, { label: 'Lion', emoji: '🦁' }], otherLetters: ['D', 'F'] },
-  { letter: 'F', word: 'Fish', emoji: '🐟', distractors: [{ label: 'Dog', emoji: '🐶' }, { label: 'Sun', emoji: '☀️' }], otherLetters: ['E', 'G'] },
-  { letter: 'G', word: 'Goat', emoji: '🐐', distractors: [{ label: 'Apple', emoji: '🍎' }, { label: 'Pen', emoji: '🖊️' }], otherLetters: ['F', 'H'] },
-  { letter: 'H', word: 'Hat', emoji: '🎩', distractors: [{ label: 'Ball', emoji: '⚽' }, { label: 'Cat', emoji: '🐱' }], otherLetters: ['G', 'I'] },
-  { letter: 'I', word: 'Ice cream', emoji: '🍦', distractors: [{ label: 'Apple', emoji: '🍎' }, { label: 'Dog', emoji: '🐶' }], otherLetters: ['H', 'J'] },
-  { letter: 'J', word: 'Jug', emoji: '🏺', distractors: [{ label: 'Cat', emoji: '🐱' }, { label: 'Sun', emoji: '☀️' }], otherLetters: ['I', 'K'] },
-  { letter: 'K', word: 'Kite', emoji: '🪁', distractors: [{ label: 'Ball', emoji: '⚽' }, { label: 'Fish', emoji: '🐟' }], otherLetters: ['J', 'L'] },
-  { letter: 'L', word: 'Lion', emoji: '🦁', distractors: [{ label: 'Dog', emoji: '🐶' }, { label: 'Goat', emoji: '🐐' }], otherLetters: ['K', 'M'] },
-  { letter: 'M', word: 'Mango', emoji: '🥭', distractors: [{ label: 'Apple', emoji: '🍎' }, { label: 'Ball', emoji: '⚽' }], otherLetters: ['L', 'N'] },
-  { letter: 'N', word: 'Nest', emoji: '🪺', distractors: [{ label: 'Cat', emoji: '🐱' }, { label: 'Dog', emoji: '🐶' }], otherLetters: ['M', 'O'] },
-  { letter: 'O', word: 'Orange', emoji: '🍊', distractors: [{ label: 'Apple', emoji: '🍎' }, { label: 'Egg', emoji: '🥚' }], otherLetters: ['N', 'P'] },
-  { letter: 'P', word: 'Pen', emoji: '🖊️', distractors: [{ label: 'Cat', emoji: '🐱' }, { label: 'Sun', emoji: '☀️' }], otherLetters: ['O', 'Q'] },
-  { letter: 'Q', word: 'Queen', emoji: '👑', distractors: [{ label: 'Cat', emoji: '🐱' }, { label: 'Dog', emoji: '🐶' }], otherLetters: ['P', 'R'] },
-  { letter: 'R', word: 'Rabbit', emoji: '🐰', distractors: [{ label: 'Ball', emoji: '⚽' }, { label: 'Fish', emoji: '🐟' }], otherLetters: ['Q', 'S'] },
-  { letter: 'S', word: 'Sun', emoji: '☀️', distractors: [{ label: 'Cat', emoji: '🐱' }, { label: 'Dog', emoji: '🐶' }], otherLetters: ['R', 'T'] },
-  { letter: 'T', word: 'Tree', emoji: '🌳', distractors: [{ label: 'Ball', emoji: '⚽' }, { label: 'Mango', emoji: '🥭' }], otherLetters: ['S', 'U'] },
-  { letter: 'U', word: 'Umbrella', emoji: '☂️', distractors: [{ label: 'Apple', emoji: '🍎' }, { label: 'Orange', emoji: '🍊' }], otherLetters: ['T', 'V'] },
-  { letter: 'V', word: 'Van', emoji: '🚐', distractors: [{ label: 'Dog', emoji: '🐶' }, { label: 'Fish', emoji: '🐟' }], otherLetters: ['U', 'W'] },
-  { letter: 'W', word: 'Water', emoji: '💧', distractors: [{ label: 'Cat', emoji: '🐱' }, { label: 'Ball', emoji: '⚽' }], otherLetters: ['V', 'X'] },
-  { letter: 'X', word: 'Xylophone', emoji: '🎼', distractors: [{ label: 'Apple', emoji: '🍎' }, { label: 'Sun', emoji: '☀️' }], otherLetters: ['W', 'Y'] },
-  { letter: 'Y', word: 'Yo-yo', emoji: '🪀', distractors: [{ label: 'Ball', emoji: '⚽' }, { label: 'Cat', emoji: '🐱' }], otherLetters: ['X', 'Z'] },
-  { letter: 'Z', word: 'Zebra', emoji: '🦓', distractors: [{ label: 'Dog', emoji: '🐶' }, { label: 'Fish', emoji: '🐟' }], otherLetters: ['X', 'Y'] },
+  {
+    letter: "C",
+    word: "Cat",
+    emoji: "🐱",
+    distractors: [
+      { label: "Ball", emoji: "⚽" },
+      { label: "Sun", emoji: "☀️" },
+    ],
+    otherLetters: ["B", "D"],
+  },
+  {
+    letter: "D",
+    word: "Dog",
+    emoji: "🐶",
+    distractors: [
+      { label: "Fish", emoji: "🐟" },
+      { label: "Mango", emoji: "🥭" },
+    ],
+    otherLetters: ["C", "E"],
+  },
+  {
+    letter: "E",
+    word: "Egg",
+    emoji: "🥚",
+    distractors: [
+      { label: "Cat", emoji: "🐱" },
+      { label: "Lion", emoji: "🦁" },
+    ],
+    otherLetters: ["D", "F"],
+  },
+  {
+    letter: "F",
+    word: "Fish",
+    emoji: "🐟",
+    distractors: [
+      { label: "Dog", emoji: "🐶" },
+      { label: "Sun", emoji: "☀️" },
+    ],
+    otherLetters: ["E", "G"],
+  },
+  {
+    letter: "G",
+    word: "Goat",
+    emoji: "🐐",
+    distractors: [
+      { label: "Apple", emoji: "🍎" },
+      { label: "Pen", emoji: "🖊️" },
+    ],
+    otherLetters: ["F", "H"],
+  },
+  {
+    letter: "H",
+    word: "Hat",
+    emoji: "🎩",
+    distractors: [
+      { label: "Ball", emoji: "⚽" },
+      { label: "Cat", emoji: "🐱" },
+    ],
+    otherLetters: ["G", "I"],
+  },
+  {
+    letter: "I",
+    word: "Ice cream",
+    emoji: "🍦",
+    distractors: [
+      { label: "Apple", emoji: "🍎" },
+      { label: "Dog", emoji: "🐶" },
+    ],
+    otherLetters: ["H", "J"],
+  },
+  {
+    letter: "J",
+    word: "Jug",
+    emoji: "🏺",
+    distractors: [
+      { label: "Cat", emoji: "🐱" },
+      { label: "Sun", emoji: "☀️" },
+    ],
+    otherLetters: ["I", "K"],
+  },
+  {
+    letter: "K",
+    word: "Kite",
+    emoji: "🪁",
+    distractors: [
+      { label: "Ball", emoji: "⚽" },
+      { label: "Fish", emoji: "🐟" },
+    ],
+    otherLetters: ["J", "L"],
+  },
+  {
+    letter: "L",
+    word: "Lion",
+    emoji: "🦁",
+    distractors: [
+      { label: "Dog", emoji: "🐶" },
+      { label: "Goat", emoji: "🐐" },
+    ],
+    otherLetters: ["K", "M"],
+  },
+  {
+    letter: "M",
+    word: "Mango",
+    emoji: "🥭",
+    distractors: [
+      { label: "Apple", emoji: "🍎" },
+      { label: "Ball", emoji: "⚽" },
+    ],
+    otherLetters: ["L", "N"],
+  },
+  {
+    letter: "N",
+    word: "Nest",
+    emoji: "🪺",
+    distractors: [
+      { label: "Cat", emoji: "🐱" },
+      { label: "Dog", emoji: "🐶" },
+    ],
+    otherLetters: ["M", "O"],
+  },
+  {
+    letter: "O",
+    word: "Orange",
+    emoji: "🍊",
+    distractors: [
+      { label: "Apple", emoji: "🍎" },
+      { label: "Egg", emoji: "🥚" },
+    ],
+    otherLetters: ["N", "P"],
+  },
+  {
+    letter: "P",
+    word: "Pen",
+    emoji: "🖊️",
+    distractors: [
+      { label: "Cat", emoji: "🐱" },
+      { label: "Sun", emoji: "☀️" },
+    ],
+    otherLetters: ["O", "Q"],
+  },
+  {
+    letter: "Q",
+    word: "Queen",
+    emoji: "👑",
+    distractors: [
+      { label: "Cat", emoji: "🐱" },
+      { label: "Dog", emoji: "🐶" },
+    ],
+    otherLetters: ["P", "R"],
+  },
+  {
+    letter: "R",
+    word: "Rabbit",
+    emoji: "🐰",
+    distractors: [
+      { label: "Ball", emoji: "⚽" },
+      { label: "Fish", emoji: "🐟" },
+    ],
+    otherLetters: ["Q", "S"],
+  },
+  {
+    letter: "S",
+    word: "Sun",
+    emoji: "☀️",
+    distractors: [
+      { label: "Cat", emoji: "🐱" },
+      { label: "Dog", emoji: "🐶" },
+    ],
+    otherLetters: ["R", "T"],
+  },
+  {
+    letter: "T",
+    word: "Tree",
+    emoji: "🌳",
+    distractors: [
+      { label: "Ball", emoji: "⚽" },
+      { label: "Mango", emoji: "🥭" },
+    ],
+    otherLetters: ["S", "U"],
+  },
+  {
+    letter: "U",
+    word: "Umbrella",
+    emoji: "☂️",
+    distractors: [
+      { label: "Apple", emoji: "🍎" },
+      { label: "Orange", emoji: "🍊" },
+    ],
+    otherLetters: ["T", "V"],
+  },
+  {
+    letter: "V",
+    word: "Van",
+    emoji: "🚐",
+    distractors: [
+      { label: "Dog", emoji: "🐶" },
+      { label: "Fish", emoji: "🐟" },
+    ],
+    otherLetters: ["U", "W"],
+  },
+  {
+    letter: "W",
+    word: "Water",
+    emoji: "💧",
+    distractors: [
+      { label: "Cat", emoji: "🐱" },
+      { label: "Ball", emoji: "⚽" },
+    ],
+    otherLetters: ["V", "X"],
+  },
+  {
+    letter: "X",
+    word: "Xylophone",
+    emoji: "🎼",
+    distractors: [
+      { label: "Apple", emoji: "🍎" },
+      { label: "Sun", emoji: "☀️" },
+    ],
+    otherLetters: ["W", "Y"],
+  },
+  {
+    letter: "Y",
+    word: "Yo-yo",
+    emoji: "🪀",
+    distractors: [
+      { label: "Ball", emoji: "⚽" },
+      { label: "Cat", emoji: "🐱" },
+    ],
+    otherLetters: ["X", "Z"],
+  },
+  {
+    letter: "Z",
+    word: "Zebra",
+    emoji: "🦓",
+    distractors: [
+      { label: "Dog", emoji: "🐶" },
+      { label: "Fish", emoji: "🐟" },
+    ],
+    otherLetters: ["X", "Y"],
+  },
 ];
 
 const alphabetLessons: Lesson[] = alphabetEntries.map((entry) => {
@@ -149,7 +364,7 @@ const alphabetLessons: Lesson[] = alphabetEntries.map((entry) => {
 
   return {
     id: `letter-${lower}`,
-    subject: 'reading',
+    subject: "reading",
     age: [6, 7],
     title: {
       en: `Meet the letter ${letter}`,
@@ -160,7 +375,7 @@ const alphabetLessons: Lesson[] = alphabetEntries.map((entry) => {
       sw: `Tambua ${letter} na ujifunze neno linaloanza nayo`,
     },
     emoji: entry.emoji,
-    colour: '#FFE7A8',
+    colour: "#FFE7A8",
     intro: {
       en: `This is the letter ${letter}. Its uppercase form is ${letter} and its lowercase form is ${lower}. ${entry.word} begins with ${letter}. Say the letter, then the word: ${letter}, ${entry.word}!`,
       sw: `Hii ni herufi ${letter}. Herufi kubwa ni ${letter} na herufi ndogo ni ${lower}. Neno la Kiingereza ${entry.word} linaanza na herufi ${letter}.`,
@@ -168,7 +383,7 @@ const alphabetLessons: Lesson[] = alphabetEntries.map((entry) => {
     questions: {
       en: [
         {
-          type: 'picture',
+          type: "picture",
           prompt: `Which picture begins with the letter ${letter}?`,
           options: [],
           pictureOptions,
@@ -188,7 +403,7 @@ const alphabetLessons: Lesson[] = alphabetEntries.map((entry) => {
       ],
       sw: [
         {
-          type: 'picture',
+          type: "picture",
           prompt: `Ni picha gani inayoanza na herufi ${letter}?`,
           options: [],
           pictureOptions,
@@ -741,6 +956,181 @@ export const lessons: Lesson[] = [
           options: ["12", "18", "15"],
           answer: "18",
           hint: "Linganisha namba hizo tatu.",
+        },
+      ],
+    },
+  },
+
+  {
+    id: "count-to-30",
+    subject: "maths",
+    age: [6, 7],
+    title: { en: "Counting to 30", sw: "Kuhesabu hadi 30" },
+    description: {
+      en: "Count, recognise and order numbers from 21 to 30",
+      sw: "Hesabu na panga namba kuanzia 21 hadi 30",
+    },
+    emoji: "🔢",
+    colour: "#D9F2DE",
+    intro: {
+      en: "Let's count from 1 to 30! After 20 come 21, 22, 23, 24, 25, 26, 27, 28, 29 and 30. Practise counting objects and saying each number.",
+      sw: "Tuhesabu kuanzia 1 hadi 30! Baada ya 20 tunapata 21, 22, 23, 24, 25, 26, 27, 28, 29 na 30. Fanya mazoezi ya kuhesabu vitu.",
+    },
+    questions: {
+      en: [
+        {
+          prompt: "What comes after 24?",
+          options: ["23", "25", "26"],
+          answer: "25",
+          hint: "Count: 23, 24, 25.",
+        },
+        {
+          prompt: "Which number is the biggest?",
+          options: ["19", "28", "23"],
+          answer: "28",
+          hint: "Compare the numbers. 28 is closest to 30.",
+        },
+        {
+          prompt: "Fill in the missing number: 26, 27, __, 29",
+          options: ["25", "28", "30"],
+          answer: "28",
+          hint: "Count forward from 27.",
+        },
+      ],
+      sw: [
+        {
+          prompt: "Ni namba gani inafuata 24?",
+          options: ["23", "25", "26"],
+          answer: "25",
+          hint: "Hesabu: 23, 24, 25.",
+        },
+        {
+          prompt: "Ni namba gani kubwa zaidi?",
+          options: ["19", "28", "23"],
+          answer: "28",
+          hint: "Linganisha namba hizo. 28 iko karibu zaidi na 30.",
+        },
+        {
+          prompt: "Jaza namba inayokosekana: 26, 27, __, 29",
+          options: ["25", "28", "30"],
+          answer: "28",
+          hint: "Endelea kuhesabu baada ya 27.",
+        },
+      ],
+    },
+  },
+  {
+    id: "count-to-50",
+    subject: "maths",
+    age: [7, 8],
+    title: { en: "Counting to 50", sw: "Kuhesabu hadi 50" },
+    description: {
+      en: "Count in ones and tens up to 50",
+      sw: "Hesabu kwa moja na makumi hadi 50",
+    },
+    emoji: "🧮",
+    colour: "#D9F2DE",
+    intro: {
+      en: "Let's count to 50! Practise counting by ones and by tens: 10, 20, 30, 40, 50. Notice how the tens increase.",
+      sw: "Tuhesabu hadi 50! Fanya mazoezi ya kuhesabu kwa moja na kwa makumi: 10, 20, 30, 40, 50.",
+    },
+    questions: {
+      en: [
+        {
+          prompt: "What comes after 39?",
+          options: ["38", "40", "41"],
+          answer: "40",
+          hint: "Count: 38, 39, 40.",
+        },
+        {
+          prompt: "Count by tens: 10, 20, 30, __",
+          options: ["35", "40", "50"],
+          answer: "40",
+          hint: "Add ten each time.",
+        },
+        {
+          prompt: "Which number is smaller?",
+          options: ["45", "32", "49"],
+          answer: "32",
+          hint: "32 is closer to 30.",
+        },
+      ],
+      sw: [
+        {
+          prompt: "Ni namba gani inafuata 39?",
+          options: ["38", "40", "41"],
+          answer: "40",
+          hint: "Hesabu: 38, 39, 40.",
+        },
+        {
+          prompt: "Hesabu kwa makumi: 10, 20, 30, __",
+          options: ["35", "40", "50"],
+          answer: "40",
+          hint: "Ongeza kumi kila mara.",
+        },
+        {
+          prompt: "Ni namba gani ndogo zaidi?",
+          options: ["45", "32", "49"],
+          answer: "32",
+          hint: "32 iko karibu na 30.",
+        },
+      ],
+    },
+  },
+  {
+    id: "count-to-100",
+    subject: "maths",
+    age: [7, 8],
+    title: { en: "Counting to 100", sw: "Kuhesabu hadi 100" },
+    description: {
+      en: "Recognise, compare and sequence numbers up to 100",
+      sw: "Tambua, linganisha na panga namba hadi 100",
+    },
+    emoji: "💯",
+    colour: "#D9F2DE",
+    intro: {
+      en: "You can count all the way to 100! Practise counting by tens: 10, 20, 30, 40, 50, 60, 70, 80, 90, 100. You can also count by ones.",
+      sw: "Unaweza kuhesabu hadi 100! Hesabu kwa makumi: 10, 20, 30, 40, 50, 60, 70, 80, 90, 100. Unaweza pia kuhesabu kwa moja.",
+    },
+    questions: {
+      en: [
+        {
+          prompt: "What comes after 69?",
+          options: ["68", "70", "71"],
+          answer: "70",
+          hint: "Count: 68, 69, 70.",
+        },
+        {
+          prompt: "Count by tens: 60, 70, 80, __",
+          options: ["85", "90", "100"],
+          answer: "90",
+          hint: "Add ten each time.",
+        },
+        {
+          prompt: "Which number is the biggest?",
+          options: ["87", "78", "98"],
+          answer: "98",
+          hint: "98 is closest to 100.",
+        },
+      ],
+      sw: [
+        {
+          prompt: "Ni namba gani inafuata 69?",
+          options: ["68", "70", "71"],
+          answer: "70",
+          hint: "Hesabu: 68, 69, 70.",
+        },
+        {
+          prompt: "Hesabu kwa makumi: 60, 70, 80, __",
+          options: ["85", "90", "100"],
+          answer: "90",
+          hint: "Ongeza kumi kila mara.",
+        },
+        {
+          prompt: "Ni namba gani kubwa zaidi?",
+          options: ["87", "78", "98"],
+          answer: "98",
+          hint: "98 iko karibu zaidi na 100.",
         },
       ],
     },
