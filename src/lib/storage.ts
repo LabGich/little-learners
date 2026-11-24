@@ -245,4 +245,8 @@ export async function clearProgress() {
     DELETE FROM activity_attempts;
     DELETE FROM learning_days;
   `);
+
+  await AsyncStorage.removeItem(
+    '@little_learners_celebrated_achievements'
+  );
 }
