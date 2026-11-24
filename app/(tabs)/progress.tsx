@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { Animated, Easing, ScrollView, Text, View } from "react-native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Easing, ScrollView, Text, View } from "react-native";
 import { useFocusEffect } from "expo-router";
 
 import { Card, SectionTitle, styles } from "../../src/components/ui";
@@ -14,10 +13,6 @@ import {
 import { strings } from "../../src/i18n/strings";
 import { progressStyles } from "../styles/progress.styles";
 
-const CELEBRATED_KEY = "@little_learners_celebrated_achievements";
-
-const confettiPieces = ["🎉", "⭐", "✨", "🎊", "🌟", "🎈", "⭐", "✨"];
-
 type Achievement = {
   id: string;
   emoji: string;
@@ -30,11 +25,6 @@ export default function Progress() {
   const [lang, setLang] = useState<"en" | "sw">("en");
   const [rows, setRows] = useState<ProgressRow[]>([]);
   const [loaded, setLoaded] = useState(false);
-  const [newUnlocks, setNewUnlocks] = useState<string[]>([]);
-
-  const popAnimation = useRef(new Animated.Value(1)).current;
-  const confettiAnimation = useRef(new Animated.Value(0)).current;
-  const bannerOpacity = useRef(new Animated.Value(0)).current;
 
   useFocusEffect(
     useCallback(() => {
@@ -240,102 +230,6 @@ export default function Progress() {
 
   const unlockedIdsKey = unlockedIds.join("|");
 
-  // Detect achievements that have been unlocked for the first time.
-  useEffect(() => {
-    if (!loaded) return;
-
-    let active = true;
-
-    const checkAchievements = async () => {
-      try {
-        const saved = await AsyncStorage.getItem(CELEBRATED_KEY);
-
-        if (!active) return;
-
-        // On first use, register existing achievements without
-        // celebrating old progress.
-        if (saved === null) {
-          await AsyncStorage.setItem(
-            CELEBRATED_KEY,
-            JSON.stringify(unlockedIds),
-          );
-          return;
-        }
-
-        const celebrated: string[] = JSON.parse(saved);
-
-        const newlyUnlocked = unlockedIds.filter(
-          (id) => !celebrated.includes(id),
-        );
-
-        if (newlyUnlocked.length > 0) {
-          setNewUnlocks(newlyUnlocked);
-
-          await AsyncStorage.setItem(
-            CELEBRATED_KEY,
-            JSON.stringify([...celebrated, ...newlyUnlocked]),
-          );
-        }
-      } catch (error) {
-        console.warn("Could not check achievement celebrations:", error);
-      }
-    };
-
-    checkAchievements();
-
-    return () => {
-      active = false;
-    };
-  }, [loaded, unlockedIdsKey]);
-
-  // Animate the achievement cards and celebration banner.
-  useEffect(() => {
-    if (newUnlocks.length === 0) return;
-
-    popAnimation.stopAnimation();
-    confettiAnimation.stopAnimation();
-    bannerOpacity.stopAnimation();
-
-    popAnimation.setValue(0.2);
-    confettiAnimation.setValue(0);
-    bannerOpacity.setValue(1);
-
-    Animated.parallel([
-      Animated.sequence([
-        Animated.spring(popAnimation, {
-          toValue: 1.5,
-          friction: 3,
-          tension: 100,
-          useNativeDriver: true,
-        }),
-        Animated.spring(popAnimation, {
-          toValue: 1,
-          friction: 4,
-          useNativeDriver: true,
-        }),
-      ]),
-      Animated.timing(confettiAnimation, {
-        toValue: 1,
-        duration: 2500,
-        useNativeDriver: true,
-      }),
-      Animated.sequence([
-        Animated.delay(3500),
-        Animated.timing(bannerOpacity, {
-          toValue: 0,
-          duration: 500,
-          useNativeDriver: true,
-        }),
-      ]),
-    ]).start(() => {
-      setNewUnlocks([]);
-    });
-  }, [newUnlocks.length]);
-
-  const celebratedAchievement = achievements.find(
-    (item) => item.id === newUnlocks[0],
-  );
-
   return (
     <ScrollView
       style={styles.screen}
@@ -348,75 +242,6 @@ export default function Progress() {
           ? "Every lesson is a step forward. Keep going!"
           : "Kila somo ni hatua mbele. Endelea!"}
       </Text>
-
-      {newUnlocks.length > 0 && (
-        <Animated.View
-          style={[progressStyles.celebrationBanner, { opacity: bannerOpacity }]}
-        >
-          <View style={progressStyles.confettiRow}>
-            {confettiPieces.map((piece, index) => (
-              <Animated.Text
-                key={index}
-                style={[
-                  progressStyles.confettiPiece,
-                  {
-                    left: `${index * 12}%`,
-                    opacity: confettiAnimation.interpolate({
-                      inputRange: [0, 0.1, 0.8, 1],
-                      outputRange: [0, 1, 1, 0],
-                    }),
-                    transform: [
-                      {
-                        translateY: confettiAnimation.interpolate({
-                          inputRange: [0, 1],
-                          outputRange: [-20, 130 + index * 10],
-                        }),
-                      },
-                      {
-                        rotate: confettiAnimation.interpolate({
-                          inputRange: [0, 1],
-                          outputRange: ["0deg", `${360 + index * 90}deg`],
-                        }),
-                      },
-                      {
-                        scale: confettiAnimation.interpolate({
-                          inputRange: [0, 0.5, 1],
-                          outputRange: [0.4, 1.5, 0.8],
-                        }),
-                      },
-                    ],
-                  },
-                ]}
-              >
-                {piece}
-              </Animated.Text>
-            ))}
-          </View>
-
-          <Animated.Text
-            style={[
-              progressStyles.celebrationEmoji,
-              { transform: [{ scale: popAnimation }] },
-            ]}
-          >
-            {celebratedAchievement?.emoji || "🏆"}
-          </Animated.Text>
-
-          <Text style={progressStyles.celebrationTitle}>
-            {lang === "en" ? "Amazing work!" : "Hongera sana!"}
-          </Text>
-
-          <Text style={progressStyles.celebrationMessage}>
-            {newUnlocks.length === 1
-              ? lang === "en"
-                ? `You unlocked ${celebratedAchievement?.title.en}!`
-                : `Umefungua tuzo ya ${celebratedAchievement?.title.sw}!`
-              : lang === "en"
-                ? `You unlocked ${newUnlocks.length} achievements!`
-                : `Umefungua tuzo ${newUnlocks.length}!`}
-          </Text>
-        </Animated.View>
-      )}
 
       <View style={progressStyles.summaryRow}>
         <Card style={progressStyles.summaryCard}>
@@ -444,19 +269,9 @@ export default function Progress() {
 
       <View style={progressStyles.achievementGrid}>
         {achievements.map((achievement) => {
-          const isNew = newUnlocks.includes(achievement.id);
 
           return (
-            <Animated.View
-              key={achievement.id}
-              style={
-                isNew
-                  ? {
-                      transform: [{ scale: popAnimation }],
-                    }
-                  : undefined
-              }
-            >
+            <View key={achievement.id}>
               <Card
                 style={[
                   progressStyles.achievementCard,
@@ -490,7 +305,7 @@ export default function Progress() {
                       : "IMEFUNGWA"}
                 </Text>
               </Card>
-            </Animated.View>
+            </View>
           );
         })}
       </View>
